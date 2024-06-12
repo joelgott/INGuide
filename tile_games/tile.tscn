@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkttjefhy8oa4"]
+
+[ext_resource type="Script" path="res://tile_games/tile.gd" id="1_37t8v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4to22"]
+bg_color = Color(0.607843, 0.607843, 0.607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdpip"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyeq4"]
+bg_color = Color(0.392157, 0.392157, 0, 0.392157)
+
+[node name="Tile" type="PanelContainer"]
+offset_right = 80.0
+offset_bottom = 80.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4to22")
+script = ExtResource("1_37t8v")
+is_numeric = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 0)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_colors/selection_color = Color(0, 0, 0, 0.196078)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 0)
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_wdpip")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pyeq4")
+alignment = 1
+max_length = 1
+select_all_on_focus = true
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

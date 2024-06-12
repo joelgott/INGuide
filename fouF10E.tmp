@@ -1,0 +1,130 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmwmbw5f4hh86"]
+
+[ext_resource type="Script" path="res://scripts/fourier.gd" id="1_6j7fm"]
+[ext_resource type="Script" path="res://scripts/fourier_scene.gd" id="1_wwkl0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at5t4"]
+bg_color = Color(0.0823529, 0.145098, 0.054902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wwkl0")
+
+[node name="Container" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 206.0
+offset_top = -215.0
+offset_right = -146.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 200)
+auto_translate = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_at5t4")
+
+[node name="Node2D" type="Node2D" parent="Container"]
+position = Vector2(185, 197)
+script = ExtResource("1_6j7fm")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sliders" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="order" type="HBoxContainer" parent="PanelContainer/sliders"]
+layout_mode = 2
+alignment = 2
+
+[node name="order label" type="Label" parent="PanelContainer/sliders/order"]
+layout_mode = 2
+text = "Order"
+
+[node name="order slider" type="HSlider" parent="PanelContainer/sliders/order"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 6.0
+value = 1.0
+rounded = true
+
+[node name="freq" type="HBoxContainer" parent="PanelContainer/sliders"]
+layout_mode = 2
+alignment = 2
+
+[node name="freq label" type="Label" parent="PanelContainer/sliders/freq"]
+layout_mode = 2
+text = "Frecuency"
+
+[node name="freq slider" type="HSlider" parent="PanelContainer/sliders/freq"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+rounded = true
+
+[node name="radius" type="HBoxContainer" parent="PanelContainer/sliders"]
+layout_mode = 2
+alignment = 2
+
+[node name="radius label" type="Label" parent="PanelContainer/sliders/radius"]
+layout_mode = 2
+text = "Radius"
+
+[node name="radius slider" type="HSlider" parent="PanelContainer/sliders/radius"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 20.0
+max_value = 80.0
+step = 10.0
+value = 20.0
+rounded = true
+
+[node name="wave select" type="OptionButton" parent="PanelContainer/sliders"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Square"
+popup/item_0/id = 0
+popup/item_1/text = "Triangular"
+popup/item_1/id = 1
+popup/item_2/text = "Sawtooth"
+popup/item_2/id = 2
+
+[node name="return" type="Button" parent="PanelContainer/sliders"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Return"
+
+[connection signal="value_changed" from="PanelContainer/sliders/order/order slider" to="Container/Node2D" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/sliders/order/order slider" to="Container/Node2D" method="_on_order_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/sliders/freq/freq slider" to="Container/Node2D" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/sliders/freq/freq slider" to="Container/Node2D" method="_on_freq_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/sliders/radius/radius slider" to="Container/Node2D" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/sliders/radius/radius slider" to="Container/Node2D" method="_on_radius_slider_value_changed"]
+[connection signal="item_selected" from="PanelContainer/sliders/wave select" to="Container/Node2D" method="_on_wave_select_item_selected"]
+[connection signal="pressed" from="PanelContainer/sliders/return" to="." method="_on_return_pressed"]

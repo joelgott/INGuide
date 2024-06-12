@@ -1,0 +1,164 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmwmbw5f4hh86"]
+
+[ext_resource type="Script" path="res://scripts/fourier.gd" id="1_6j7fm"]
+[ext_resource type="Script" path="res://scripts/fourier_scene.gd" id="1_wwkl0"]
+[ext_resource type="Texture2D" uid="uid://2gxrjueowxh6" path="res://sprites/screens.png" id="2_7ouxf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at5t4"]
+bg_color = Color(0.0823529, 0.145098, 0.054902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wwkl0")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GUI" type="Control" parent="CenterContainer/HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/HSplitContainer/GUI"]
+position = Vector2(150, 200)
+scale = Vector2(0.700266, 0.832216)
+texture = ExtResource("2_7ouxf")
+region_enabled = true
+region_rect = Rect2(1549, 3322, 481, 448)
+
+[node name="sliders" type="VBoxContainer" parent="CenterContainer/HSplitContainer/GUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.212
+offset_top = -135.261
+offset_right = 72.7885
+offset_bottom = 134.739
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="order" type="HBoxContainer" parent="CenterContainer/HSplitContainer/GUI/sliders"]
+layout_mode = 2
+alignment = 2
+
+[node name="order label" type="Label" parent="CenterContainer/HSplitContainer/GUI/sliders/order"]
+layout_mode = 2
+text = "Orden"
+
+[node name="order slider" type="HSlider" parent="CenterContainer/HSplitContainer/GUI/sliders/order"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 2.0
+max_value = 7.0
+value = 2.0
+rounded = true
+
+[node name="freq" type="HBoxContainer" parent="CenterContainer/HSplitContainer/GUI/sliders"]
+layout_mode = 2
+alignment = 2
+
+[node name="freq label" type="Label" parent="CenterContainer/HSplitContainer/GUI/sliders/freq"]
+layout_mode = 2
+text = "Frecuencia"
+
+[node name="freq slider" type="HSlider" parent="CenterContainer/HSplitContainer/GUI/sliders/freq"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 2.0
+max_value = 5.0
+value = 2.0
+rounded = true
+
+[node name="radius" type="HBoxContainer" parent="CenterContainer/HSplitContainer/GUI/sliders"]
+layout_mode = 2
+alignment = 2
+
+[node name="radius label" type="Label" parent="CenterContainer/HSplitContainer/GUI/sliders/radius"]
+layout_mode = 2
+text = "Radio"
+
+[node name="radius slider" type="HSlider" parent="CenterContainer/HSplitContainer/GUI/sliders/radius"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 40.0
+step = 10.0
+value = 40.0
+rounded = true
+
+[node name="wave select" type="OptionButton" parent="CenterContainer/HSplitContainer/GUI/sliders"]
+layout_mode = 2
+item_count = 4
+selected = 0
+popup/item_0/text = "Cuadrada"
+popup/item_0/id = 0
+popup/item_1/text = "Triangular"
+popup/item_1/id = 1
+popup/item_2/text = "Diente de sierra"
+popup/item_2/id = 2
+popup/item_3/text = "Pulsos"
+popup/item_3/id = 3
+
+[node name="restart" type="Button" parent="CenterContainer/HSplitContainer/GUI/sliders"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="return" type="Button" parent="CenterContainer/HSplitContainer/GUI/sliders"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+disabled = true
+text = "Volver"
+
+[node name="Scope" type="PanelContainer" parent="CenterContainer/HSplitContainer"]
+custom_minimum_size = Vector2(800, 400)
+layout_mode = 2
+auto_translate = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_at5t4")
+
+[node name="Node2D" type="Node2D" parent="CenterContainer/HSplitContainer/Scope"]
+position = Vector2(200, 197)
+script = ExtResource("1_6j7fm")
+
+[connection signal="ready" from="CenterContainer/HSplitContainer/GUI/sliders/order/order slider" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_order_slider_ready"]
+[connection signal="value_changed" from="CenterContainer/HSplitContainer/GUI/sliders/order/order slider" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_order_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/HSplitContainer/GUI/sliders/order/order slider" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/HSplitContainer/GUI/sliders/freq/freq slider" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_freq_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/HSplitContainer/GUI/sliders/freq/freq slider" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/HSplitContainer/GUI/sliders/radius/radius slider" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_radius_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/HSplitContainer/GUI/sliders/radius/radius slider" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_h_slider_value_changed"]
+[connection signal="item_selected" from="CenterContainer/HSplitContainer/GUI/sliders/wave select" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_wave_select_item_selected"]
+[connection signal="pressed" from="CenterContainer/HSplitContainer/GUI/sliders/restart" to="CenterContainer/HSplitContainer/Scope/Node2D" method="_on_button_pressed"]
+[connection signal="pressed" from="CenterContainer/HSplitContainer/GUI/sliders/return" to="." method="_on_return_pressed"]

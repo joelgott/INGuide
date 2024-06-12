@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqjwqk2crgbas"]
+
+[ext_resource type="Texture2D" uid="uid://bmhlfg75xrv0m" path="res://backgrounds/FondoMain.jpg" id="1_3d078"]
+[ext_resource type="Script" path="res://scripts/transition.gd" id="1_f6p2o"]
+[ext_resource type="Texture2D" uid="uid://2gxrjueowxh6" path="res://sprites/screens.png" id="3_5pmq7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o7c6w"]
+texture = ExtResource("1_3d078")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f6p2o")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o7c6w")
+
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Screens" type="Sprite2D" parent="Background/Control"]
+position = Vector2(-127, -49)
+scale = Vector2(0.909297, 0.499442)
+texture = ExtResource("3_5pmq7")
+region_enabled = true
+region_rect = Rect2(227, 2824, 597, 1065)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.0
+offset_top = -315.0
+offset_right = 139.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.827451, 0.219608, 1)
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 10
+theme_override_font_sizes/italics_font_size = 10
+theme_override_font_sizes/bold_italics_font_size = 10
+theme_override_font_sizes/mono_font_size = 10
+text = "Hola"
+
+[node name="Play_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -81.0
+offset_right = -5.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.42765, 2.21599)
+theme_override_colors/font_color = Color(1, 0.827451, 0.219608, 1)
+text = "Jugar"
+
+[connection signal="pressed" from="Play_Button" to="." method="_on_play_button_pressed"]

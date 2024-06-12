@@ -1,0 +1,8 @@
+{
+	"fourier":
+	{
+		"name": "Fourier",
+		"text":"Las series de fourier nos muestran que una senal se puede descomponer en una suma de funciones senoidales y cosenoidales, con los coeficientes correctos se podria construir cualquier funcion periodica!",
+		"next_scene": "res://fourier.tscn"
+	}
+}

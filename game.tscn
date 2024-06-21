@@ -63,9 +63,11 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0.819608, 0.819608, 1)
 theme_override_font_sizes/normal_font_size = 30
-text = "Bienvenido al programa de entrenamiento para ingenieros.
+text = "¡Hola, bienvenido a INGuide! Si estas leyendo esto es porque las universidades públicas estan bajo ataque. Esta es una copia de respaldo del conocimiento que se encuentra en una facultad de ingeniería. La informacion esta almacenada en forma de minijuegos, que estan cada uno relacionado con un fenómeno ingenieril. 
 
-Escribi ayuda para mas información."
+¡Buena suerte!
+
+Escribi ayuda para mas información, o ayuda [comando] para saber que hace dicho comando."
 script = ExtResource("4_rckec")
 
 [node name="InputArea" type="PanelContainer" parent="Background/MarginContainer/VBoxContainer"]

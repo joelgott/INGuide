@@ -3,6 +3,7 @@ extends Control
 @onready var console = $Background/MarginContainer/VBoxContainer/GameText/MarginContainer/Console
 
 var commands = 	["salir","ayuda","cargar","juegos"]
+var commands_help = ["Vuelve al menu principal","Da una lista de comandos disponibles.\nTambien explica que hace cada comando si se escribe ayuda [comando].","Permite cargar alguno de los juegos escribiendo cargar [juego].","Da una lista de los juegos disponibles."]
 
 var scenes_dict = {}
 
@@ -21,10 +22,21 @@ func process_command(input):
 	match first_word:
 		"salir":get_tree().change_scene_to_file("res://start.tscn")
 		"ayuda":
-			var text = "Comandos disponibles: \n"
-			for command in commands:
-				text += "- " + command + "\n"
-			console.print_text(text)
+			if words.size() == 1:
+				var text = "Comandos disponibles: \n"
+				for command in commands:
+					text += "- " + command + "\n"
+				console.print_text(text)
+			elif words.size() == 2:
+				var command = commands.find(second_word)
+				if command != -1:
+					var text = second_word + ": \n"
+					text += commands_help[command]
+					console.print_text(text)
+				else:
+					console.print_text("Comando desconocido, escribi ayuda para obtener una lista de comandos")
+			else:
+				console.print_text("Comando desconocido, escribi ayuda para obtener una lista de comandos")
 		"cargar":		
 			if words.size() == 1 or second_word not in scenes_dict:
 				console.print_text("Juego no reconocido, escribi juegos para obtener una lista de los juegos disponibles")
@@ -37,8 +49,9 @@ func process_command(input):
 		"juegos":
 			var text = "Juegos disponibles: \n"
 			for game in scenes_dict:
-				text += "- " + scenes_dict[game]["name"] + "\n"
-				console.print_text(text)
+				text += "- " + scenes_dict[game]["name"] + "\n" 
+			text += "Para seleccionar alguno de los juegos se debe escribir cargar [juego]"
+			console.print_text(text)
 		
 		_: console.print_text("Comando desconocido, escribi ayuda para obtener una lista de comandos")
 

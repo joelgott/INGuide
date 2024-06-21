@@ -2,7 +2,13 @@
 	"fourier":
 	{
 		"name": "Fourier",
-		"text":"Las series de fourier nos muestran que una senal se puede descomponer en una suma de funciones senoidales y cosenoidales, con los coeficientes correctos se podria construir cualquier funcion periodica!",
+		"text":"Una serie de fourier es la descomposición de una señal en suma de funciones senoidales y cosenoidales. Si ajustamos los coeficientes de la manera correcta se podria reconstruir cualquier función periódica! En este minijuego hay que reconstruir la señal en negro ajustando el tipo de onda, la frecuencia, la amplitud y el orden de la serie de Fourier",
 		"next_scene": "res://fourier.tscn"
+	},
+	"colisiones":
+	{
+		"name": "Colisiones",
+		"text":"El coeficiente de restitución es una medida del grado de conservación de la energía cinética en un choque entre partículas. Si su valor es igual a 1 se dice que es un choque élastico, si es mayor se dice que es explosivo y si es igual a 0 se dice que es un choque plastico. En este minijuego hay que modificar la energia del sistema (proporcional a la suma ponderada de la velocidad al cuadrado de cada particula) usando dicho coeficiente de restitución.",
+		"next_scene": "res://collisions.tscn"
 	}
 }

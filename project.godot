@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Text Game"
+config/name="INGuide"
 run/main_scene="res://start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [dotnet]
 

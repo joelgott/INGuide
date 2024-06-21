@@ -1,0 +1,173 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjrdu0xptbpc6"]
+
+[ext_resource type="Texture2D" uid="uid://bahcheqs3je64" path="res://sprites/PNG/fiuba.png" id="1_6ttw8"]
+[ext_resource type="Script" path="res://scripts/Logo.gd" id="1_63rno"]
+[ext_resource type="Script" path="res://scripts/collisions.gd" id="1_jq8cr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpbqc"]
+size = Vector2(64, 648)
+
+[sub_resource type="Theme" id="Theme_ba10h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytfib"]
+size = Vector2(1152, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yquvg"]
+size = Vector2(112, 112)
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jq8cr")
+
+[node name="Bordes Horizontales" type="StaticBody2D" parent="."]
+position = Vector2(599, 321)
+
+[node name="Borde Izquierdo" type="CollisionShape2D" parent="Bordes Horizontales"]
+position = Vector2(-623, 175)
+shape = SubResource("RectangleShape2D_xpbqc")
+
+[node name="ColorRect" type="ColorRect" parent="Bordes Horizontales/Borde Izquierdo"]
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = -324.0
+offset_right = 32.0
+offset_bottom = 176.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_ba10h")
+color = Color(0.238508, 0.200041, 0.124577, 1)
+
+[node name="Borde Derecho" type="CollisionShape2D" parent="Bordes Horizontales"]
+position = Vector2(577, 175)
+shape = SubResource("RectangleShape2D_xpbqc")
+
+[node name="ColorRect" type="ColorRect" parent="Bordes Horizontales/Borde Derecho"]
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = -324.0
+offset_right = -16.0
+offset_bottom = 176.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_ba10h")
+color = Color(0.238508, 0.200041, 0.124577, 1)
+
+[node name="Bordes Verticales" type="StaticBody2D" parent="."]
+position = Vector2(599, 321)
+
+[node name="Borde Superior" type="CollisionShape2D" parent="Bordes Verticales"]
+position = Vector2(-23, -177)
+shape = SubResource("RectangleShape2D_ytfib")
+debug_color = Color(0, 0.6, 0.701961, 0.768627)
+
+[node name="ColorRect" type="ColorRect" parent="Bordes Verticales/Borde Superior"]
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = 24.0
+offset_right = 576.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ba10h")
+color = Color(0.238508, 0.200041, 0.124577, 1)
+
+[node name="Borde Inferior" type="CollisionShape2D" parent="Bordes Verticales"]
+position = Vector2(-23, 351)
+shape = SubResource("RectangleShape2D_ytfib")
+debug_color = Color(0, 0.6, 0.701961, 0.768627)
+
+[node name="ColorRect" type="ColorRect" parent="Bordes Verticales/Borde Inferior"]
+custom_minimum_size = Vector2(10, 10)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -32.0
+offset_right = 576.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ba10h")
+color = Color(0.239216, 0.2, 0.12549, 1)
+
+[node name="Logo" type="CharacterBody2D" parent="."]
+position = Vector2(352, 304)
+script = ExtResource("1_63rno")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Logo"]
+shape = SubResource("RectangleShape2D_yquvg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Logo"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6ttw8")
+
+[node name="restart" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+offset_left = 928.0
+offset_top = 16.0
+offset_right = 1025.0
+offset_bottom = 104.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Reiniciar"
+
+[node name="return" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+offset_left = 1040.0
+offset_top = 16.0
+offset_right = 1137.0
+offset_bottom = 104.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+disabled = true
+text = "Volver"
+
+[node name="coef" type="HBoxContainer" parent="."]
+offset_left = 632.0
+offset_top = 48.0
+offset_right = 909.0
+offset_bottom = 68.0
+alignment = 2
+
+[node name="coef label" type="Label" parent="coef"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Coeficiente de restitucion"
+
+[node name="coef slider" type="HSlider" parent="coef"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[node name="status" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = 519.0
+offset_bottom = 71.0
+text = "El sistema se encuentra en desequilibrio, hay demasiada energia!"
+
+[connection signal="pressed" from="restart" to="Logo" method="_on_restart_pressed"]
+[connection signal="pressed" from="return" to="." method="_on_return_pressed"]
+[connection signal="value_changed" from="coef/coef slider" to="Logo" method="_on_coef_slider_value_changed"]
